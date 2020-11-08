@@ -1,0 +1,104 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form (ngSubmit)="onSubmit()" #f="ngForm">
+          <div class="form-group">
+            <label for="firstName">First name</label>
+            <input
+              type="text"
+              id="firstName"
+              class="form-control"
+              ngModel
+              name="firstName"
+              #firstName="ngModel"
+              required>
+              <span class="help-block" *ngIf="!firstName.valid && firstName.touched">First name is required!</span>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last name</label>
+            <input
+              type="text"
+              id="lastName"
+              class="form-control"
+              ngModel
+              name="lastName"
+              #lastName="ngModel"
+              required>
+              <span class="help-block" *ngIf="!lastName.valid && lastName.touched">Last name is required!</span>
+          </div>
+          <div class="form-group">
+            <label for="patronymicName">Patronymic name</label>
+            <input
+              type="text"
+              id="patronymicName"
+              class="form-control"
+              ngModel
+              name="patronymicName"
+              >
+          </div>
+          <div class="form-group">
+            <label for="email">Mail</label>
+            <input
+              type="email"
+              id="email"
+              class="form-control"
+              ngModel
+              name="email"
+              required
+              email
+              #email="ngModel">
+            <span class="help-block" *ngIf="!email.valid && email.touched">Please enter a valid email!</span>
+          </div>
+          <div
+          id="password-data"
+          ngModelGroup="passwordData"
+          >
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+              type="password"
+              id="password"
+              class="form-control"
+              ngModel
+              name="password"
+              required
+              password
+              minlength="4"
+              #password="ngModel">
+              <span class="help-block" *ngIf="!password.valid && password.touched">Please enter a password that consists of more than 3 characters!</span>
+            </div>
+            <div class="form-group">
+              <label for="passwordConfirmation">Confirm the password</label>
+              <input
+              type="password"
+              id="passwordConfirmation"
+              class="form-control"
+              ngModel
+              name="passwordConfirmation"
+              required
+              password
+              minlength="4"
+              pattern="{{ password.value }}"
+              #passwordConfirmation="ngModel">
+              <span class="help-block" *ngIf="!passwordConfirmation.valid && passwordConfirmation.touched">Passwords must match!</span>
+            </div>
+          </div>
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!f.valid">Submit</button>
+      </form>
+    </div>
+  </div>
+  <hr>
+  <div class="row" *ngIf="submitted">
+    <div class="col-xs-12">
+      <h3>Your Data</h3>
+      <p>First name: {{ user.firstName }}</p>
+      <p>Last name: {{ user.lastName }}</p>
+      <p>Patronymic name: {{ user.patronymicName }}</p>
+      <p>Mail: {{ user.email }}</p>
+      <p>Password: {{ user.password }}</p>
+    </div>
+  </div>
+</div>
