@@ -94,9 +94,9 @@
   <div class="row" *ngIf="submitted">
     <div class="col-xs-12">
       <h3>Your Data</h3>
-      <p>First name: {{ user.firstName }}</p>
-      <p>Last name: {{ user.lastName }}</p>
-      <p>Patronymic name: {{ user.patronymicName }}</p>
+      <p>
+        Name: {{ user.firstName + " " + user.patronymicName + (user.patronymicName ? " " : "")  + user.lastName }}
+      </p>
       <p>Mail: {{ user.email }}</p>
       <p>Password: {{ user.password }}</p>
     </div>
